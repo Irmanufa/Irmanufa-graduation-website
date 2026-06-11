@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"
+    />
+    <title>Happy Graduation - Irmanufa | Kak Agung Ubaidillah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.youtube.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- POPUP AWAL -->
+    <div id="graduationPopup" class="popup-overlay">
+      <div class="popup-card">
+        <div class="popup-hat">🎓✨</div>
+        <div class="balloon-container" id="balloonContainer"></div>
+        <h2 class="popup-title">SELAMAT LULUS!</h2>
+        <p class="popup-message">
+          <strong>Kak Agung Ubaidillah</strong><br />
+          mengucapkan<br />
+          <span class="big-grad">HAPPY GRADUATION</span><br /><br />
+          Untuk seluruh anggota <strong>Irmanufa</strong> yang telah LULUS.<br />
+          Kalian semua hebat. Lanjutkan perjuangan ke jenjang berikutnya.
+        </p>
+        <button id="closePopupBtn" class="popup-btn">
+          Lihat Ucapan & Foto
+        </button>
+      </div>
+    </div>
+
+    <main class="container">
+      <!-- Hero Section -->
+      <div class="hero">
+        <div class="badge-graduation">SELAMAT LULUS</div>
+        <h1 class="glow-text">
+          Happy Graduation<br /><span class="irmanufa">Irmanufa</span> Family
+        </h1>
+        <p class="subtitle">Dari Kak Agung Ubaidillah | Yang Selalu Bangga</p>
+      </div>
+
+      <!-- Gallery Foto 27 Anggota -->
+      <div class="gallery-section">
+        <h2 class="section-title">27 Anggota Hebat Irmanufa</h2>
+        <p class="section-subtitle">
+          Klik tombol "Lihat ↓" untuk melihat ucapan pribadi
+        </p>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+
+      <!-- Video YouTube Autoplay -->
+      <div class="video-section">
+        <h2 class="section-title">Video Spesial Kelulusan</h2>
+        <div class="video-wrapper">
+          <iframe
+            id="youtubeVideo"
+            src="https://www.youtube.com/embed/7WCx_QS04oI?autoplay=1&mute=1&loop=1&playlist=7WCx_QS04oI&controls=1&modestbranding=1&rel=0&playsinline=1"
+            title="Irmanufa dalam cerita - memaknai arti organisasi yang sesungguhnya"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+        <p class="video-caption">Klik ikon suara video untuk mendengar suara</p>
+      </div>
+
+      <!-- Ucapan Utama -->
+      <div class="message-section">
+        <div class="message-card">
+          <p class="message-text">
+            "Selamat kepada seluruh anggota Irmanufa yang telah lulus.
+            Perjuangan kalian selama ini luar biasa. Teruslah belajar,
+            berkembang, dan memberikan yang terbaik di masa depan. Bangga selalu
+            dengan kalian."
+          </p>
+          <p class="message-author">— Kak Agung Ubaidillah —</p>
+        </div>
+      </div>
+
+      <!-- Tombol Musik -->
+      <div class="music-control">
+        <button id="musicToggleBtn" class="music-btn">
+          <span id="musicIcon">🔇</span>
+          <span id="musicText">Putar Musik</span>
+        </button>
+        <p class="music-note" id="musicStatus">
+          🎵 Klik tombol untuk memutar lagu spesial
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Dibuat oleh <strong>Kak Agung Ubaidillah</strong></p>
+        <p>Untuk seluruh anggota Irmanufa | Teruslah Berkarya & Berprestasi</p>
+        <p class="footer-contact">
+          📱 Kontak:
+          <a href="https://wa.me/6285926406250" target="_blank"
+            >0859-2640-6250</a
+          >
+          (Kak Agung)
+        </p>
+      </footer>
+    </main>
+
+    <!-- TOMBOL WHATSAPP FLOATING -->
+    <a
+      href="https://wa.me/6285926406250"
+      target="_blank"
+      class="whatsapp-float"
+    >
+      <div class="whatsapp-icon">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+          width="28"
+          height="28"
+        />
+      </div>
+      <span class="whatsapp-text">Chat Kak Agung</span>
+    </a>
+
+    <!-- MODAL UCAPAN PRIBADI (dari Kak Agung) -->
+    <div id="personalMessageModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-bg" id="modalBg"></div>
+        <div class="modal-content">
+          <button id="closeModalBtn" class="modal-close">&times;</button>
+          <h3 class="modal-name" id="modalName"></h3>
+          <div class="modal-message" id="modalMessage"></div>
+          <button id="modalOkBtn" class="modal-ok-btn">Tutup</button>
+          <button id="replyToAgungBtn" class="modal-reply-btn">
+            💬 Balas & Kirim ke WhatsApp Kak Agung
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL FORM UCAPAN BALASAN -->
+    <div id="replyModal" class="modal-overlay">
+      <div class="modal-card reply-card">
+        <div class="modal-content reply-content">
+          <button id="closeReplyModalBtn" class="modal-close">&times;</button>
+          <h3 class="reply-title">💌 Kirim Ucapan untuk Kak Agung</h3>
+          <p class="reply-subtitle">
+            Tulis pesan balasanmu di sini, akan dikirim ke WhatsApp Kak Agung
+          </p>
+          <textarea
+            id="replyMessageInput"
+            class="reply-input"
+            placeholder="Tulis ucapan terima kasih, kesan, atau pesan untuk Kak Agung..."
+          ></textarea>
+          <button id="sendReplyBtn" class="reply-send-btn">
+            📤 Kirim ke WhatsApp Kak Agung
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFIKASI SUKSES KIRIM PESAN (CSS KEREN) -->
+    <div id="successNotification" class="success-notification">
+      <div class="success-icon">✅</div>
+      <div class="success-content">
+        <h4>Pesan Berhasil Terkirim!</h4>
+        <p>Ucapanmu sudah dikirim ke WhatsApp Kak Agung</p>
+        <small>Kak Agung akan membalasnya segera 💝</small>
+      </div>
+      <div class="success-progress"></div>
+    </div>
+
+    <audio id="bgMusic" src="lagu.mp3" loop preload="auto"></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
