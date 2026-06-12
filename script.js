@@ -1,8 +1,8 @@
 // ========== SCRIPT LENGKAP - HAPPY GRADUATION IRMANUFA ==========
 // 27 anggota dengan foto di folder foto/A1.png s/d A27.png
 // Fitur: Ucapan balasan untuk Kak Agung akan dikirim ke WhatsApp
-// Video YouTube: JALAN (HANYA VISUAL, DI-MUTE)
-// MP3: JALAN SEBAGAI BACKSOUND (SUARA KELUAR)
+// Video YouTube: MUTE TOTAL (HANYA VISUAL)
+// MP3: LOOPING TERUS (BACKSOUND UTAMA)
 
 // NOMOR WHATSAPP KAK AGUNG (085926406250)
 const TARGET_WA = "6285926406250";
@@ -217,7 +217,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ========== 6. MUSIK MP3 (BACKSOUND) + VIDEO YOUTUBE (MUTE) ==========
+// ========== 6. MUSIK MP3 (BACKSOUND) + VIDEO YOUTUBE (MUTE TOTAL) ==========
 const bgMusic = document.getElementById("bgMusic");
 const musicToggleBtn = document.getElementById("musicToggleBtn");
 const musicIcon = document.getElementById("musicIcon");
@@ -226,24 +226,32 @@ const musicStatus = document.getElementById("musicStatus");
 
 let isMusicPlaying = false;
 let autoPlayAttempted = false;
-let videoMuted = true;
 
-// Pastikan video YouTube dalam keadaan MUTE (hanya visual)
+// Pastikan video YouTube benar-benar MUTE
 const youtubeVideo = document.getElementById("youtubeVideo");
 if (youtubeVideo) {
-  console.log("🎬 Video YouTube dalam mode MUTE - hanya visual, tidak ada suara");
-  console.log("🎵 Musik MP3 akan menjadi backsound (suara keluar)");
+  // Cara memastikan video mute
+  const iframeSrc = youtubeVideo.src;
+  if (!iframeSrc.includes('mute=1')) {
+    youtubeVideo.src = iframeSrc.replace('autoplay=1', 'autoplay=1&mute=1');
+  }
+  console.log("🎬 Video YouTube dalam mode MUTE TOTAL - tidak akan mengeluarkan suara");
 }
 
+// Fungsi untuk memutar musik MP3 (looping terus)
 function startMusic() {
   if (isMusicPlaying) return;
+  
+  // Reset audio dulu
+  bgMusic.currentTime = 0;
+  bgMusic.loop = true; // Looping otomatis
   
   bgMusic.play().then(() => {
     isMusicPlaying = true;
     musicIcon.textContent = "🔊";
     musicText.textContent = "Matikan Musik";
-    musicStatus.innerHTML = "🎵 Musik latar (MP3) sedang diputar 🎵";
-    console.log("🎵 Musik MP3 berjalan sebagai backsound");
+    musicStatus.innerHTML = "🎵 Musik latar (MP3) sedang diputar (loop) 🎵";
+    console.log("🎵 Musik MP3 looping - berjalan sebagai backsound utama");
   }).catch((err) => {
     console.log("Gagal play MP3:", err);
     musicStatus.innerHTML = "⚠️ Klik tombol untuk memutar musik ⚠️";
@@ -254,7 +262,7 @@ function stopMusic() {
   bgMusic.pause();
   isMusicPlaying = false;
   musicIcon.textContent = "🔇";
-  musicText.textContent ="Putar Musik";
+  musicText.textContent = "Putar Musik";
   musicStatus.innerHTML = "🎵 Musik MP3 dijeda. Klik tombol untuk memutar lagi";
   console.log("🎵 Musik MP3 dihentikan");
 }
@@ -270,7 +278,7 @@ if (musicToggleBtn) {
   });
 }
 
-// Popup ditutup -> mulai musik
+// Popup ditutup -> mulai musik MP3
 const closePopupBtn = document.getElementById("closePopupBtn");
 if (closePopupBtn) {
   closePopupBtn.addEventListener("click", () => {
@@ -281,27 +289,38 @@ if (closePopupBtn) {
         autoPlayAttempted = true;
         setTimeout(() => {
           startMusic();
-          console.log("🎬 Video YouTube berjalan (mute) + 🎵 Musik MP3 mulai");
+          console.log("🎬 Video YouTube berjalan (MUTE) + 🎵 Musik MP3 looping sebagai backsound");
         }, 300);
       }
     }
   });
 }
 
-// Fallback: jika user klik di mana saja setelah popup hilang
+// Fallback: jika user mengklik sesuatu selain popup
 document.body.addEventListener("click", function initMusicOnAnyClick() {
   const popup = document.getElementById("graduationPopup");
   const isPopupVisible = popup && popup.style.display === "flex";
   
   if (!autoPlayAttempted && !isMusicPlaying && !isPopupVisible) {
     autoPlayAttempted = true;
-    setTimeout(startMusic, 100);
+    setTimeout(() => {
+      startMusic();
+      console.log("🎵 Fallback: Musik MP3 dimulai dari klik user");
+    }, 100);
   }
 }, { once: true });
+
+// Pastikan MP3 looping terus meskipun ada error
+setInterval(() => {
+  if (isMusicPlaying && bgMusic.paused) {
+    console.log("⚠️ Musik terdeteksi berhenti, mencoba memutar ulang...");
+    bgMusic.play().catch(e => console.log("Gagal restart:", e));
+  }
+}, 5000);
 
 console.log("🎓 Happy Graduation - 27 anggota Irmanufa | Website by Kak Agung Ubaidillah");
 console.log("📱 Ucapan balasan akan dikirim ke WhatsApp: 0859-2640-6250");
 console.log("✨ Notifikasi sukses akan muncul dengan animasi keren!");
-console.log("🎬 Video YouTube: JALAN (HANYA VISUAL, DI-MUTE)");
-console.log("🎵 Musik MP3: JALAN SEBAGAI BACKSOUND (SUARA KELUAR)");
-console.log("✅ Video & MP3 berjalan BERSAMAAN!");
+console.log("🎬 Video YouTube: MUTE TOTAL - HANYA VISUAL");
+console.log("🎵 Musik MP3: LOOPING TERUS - BACKSOUND UTAMA");
+console.log("✅ Keduanya berjalan harmonis - MP3 yang bersuara, video hanya visual!");
