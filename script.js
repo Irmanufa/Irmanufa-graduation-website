@@ -47,7 +47,7 @@ const personalMessages = [
   "Halo nang rizky mksh wis kieng berkegiatan irmas ya maaf yen kaka akeh salah semoga rizky terus rajin ya nangg semoga hal baik juga menyertai rizky sekeluarga",
   "Halo nang eja Selamat Luluss.... semoga hal baik menanti eja di masa depan ya,semoga selalu rajinn di setiap kegiatan baik, aja klalen ibue eja pengen eja terus berbenah demi masa depan ",
   "Nang moldy mksh ya nang wis nurut karo arahane kaka, maaf yen kaka akeh nuntut laka niat sejen selain pengen moldi dadi wong baikk, dadi baik emang mudu dipaksa nang..... ",
-  "Adittttttttt kaka sada kangen kinih wkwkwk, sin pasti kaka bli weruh hal apa sing lagi adit hadapi cuma mksh ya wis ngupai sedikit warna ng irmas gas rajin maningg yuuuuuu....",
+  "Adittttttttt kaka sada kangen kinih wkwkwk, sing pasti kaka bli weruh hal apa sing lagi adit hadapi cuma mksh ya wis ngupai sedikit warna ng irmas gas rajin maningg yuuuuuu....",
   "Abii, semoga kedepane selalu bijak ya nang dalam mencari jati diri terus hebat terus penasaran dengan hal baru dan terus jadi baik, semoga selalu inget pesane kaka yaaaa",
   "Yasinn weruh beli nang kaka belajar sabar ng yasin kuh hhe sebab kaka tau hal sing yasin rasakena ng umure yasin sing masih enommm, sing jelas yasin berhak sukses dan berhak bahagia, aja sampe merasa due keterbatasan yasin dadi nyerah ng keadaan kaka siap tolong semampue kaka ya nangg, doa terbaik anggo yasin yaaa.....",
   "Nang ais terimakasih sudah menyempatkan waktu untuk berkegiatan semoga kesibukane pais tidak menghalangi niate pais dalam berkegiatan ya terus jadi baik oke okeeeee ",
