@@ -1,6 +1,8 @@
 // ========== SCRIPT LENGKAP - HAPPY GRADUATION IRMANUFA ==========
 // 27 anggota dengan foto di folder foto/A1.png s/d A27.png
 // Fitur: Ucapan balasan untuk Kak Agung akan dikirim ke WhatsApp
+// Video YouTube: JALAN (HANYA VISUAL, DI-MUTE)
+// MP3: JALAN SEBAGAI BACKSOUND (SUARA KELUAR)
 
 // NOMOR WHATSAPP KAK AGUNG (085926406250)
 const TARGET_WA = "6285926406250";
@@ -132,14 +134,10 @@ function showSuccessNotification() {
   const notification = document.getElementById("successNotification");
   if (!notification) return;
 
-  // Hapus class show jika ada
   notification.classList.remove("show");
-  // Force reflow
   void notification.offsetWidth;
-  // Tambah class show
   notification.classList.add("show");
 
-  // Hapus notifikasi setelah 3 detik
   setTimeout(() => {
     notification.classList.remove("show");
   }, 3000);
@@ -185,11 +183,8 @@ sendReplyBtn.addEventListener("click", () => {
     return;
   }
 
-  // Kirim ke WhatsApp Kak Agung
   sendToWhatsApp(currentNamaForReply, pesan);
   closeReplyModal();
-
-  // TAMPILKAN NOTIFIKASI SUKSES YANG KEREN
   showSuccessNotification();
 });
 
@@ -222,7 +217,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ========== 6. MUSIK ==========
+// ========== 6. MUSIK MP3 (BACKSOUND) + VIDEO YOUTUBE (MUTE) ==========
 const bgMusic = document.getElementById("bgMusic");
 const musicToggleBtn = document.getElementById("musicToggleBtn");
 const musicIcon = document.getElementById("musicIcon");
@@ -231,49 +226,82 @@ const musicStatus = document.getElementById("musicStatus");
 
 let isMusicPlaying = false;
 let autoPlayAttempted = false;
+let videoMuted = true;
+
+// Pastikan video YouTube dalam keadaan MUTE (hanya visual)
+const youtubeVideo = document.getElementById("youtubeVideo");
+if (youtubeVideo) {
+  console.log("🎬 Video YouTube dalam mode MUTE - hanya visual, tidak ada suara");
+  console.log("🎵 Musik MP3 akan menjadi backsound (suara keluar)");
+}
 
 function startMusic() {
   if (isMusicPlaying) return;
-  bgMusic
-    .play()
-    .then(() => {
-      isMusicPlaying = true;
-      musicIcon.textContent = "🔊";
-      musicText.textContent = "Matikan Musik";
-      musicStatus.innerHTML = "🎵 Musik sedang diputar 🎵";
-    })
-    .catch(() => {
-      musicStatus.innerHTML = "⚠️ Klik tombol untuk memutar musik ⚠️";
-    });
+  
+  bgMusic.play().then(() => {
+    isMusicPlaying = true;
+    musicIcon.textContent = "🔊";
+    musicText.textContent = "Matikan Musik";
+    musicStatus.innerHTML = "🎵 Musik latar (MP3) sedang diputar 🎵";
+    console.log("🎵 Musik MP3 berjalan sebagai backsound");
+  }).catch((err) => {
+    console.log("Gagal play MP3:", err);
+    musicStatus.innerHTML = "⚠️ Klik tombol untuk memutar musik ⚠️";
+  });
 }
 
 function stopMusic() {
   bgMusic.pause();
   isMusicPlaying = false;
   musicIcon.textContent = "🔇";
-  musicText.textContent = "Putar Musik";
-  musicStatus.innerHTML = "🎵 Musik dijeda. Klik tombol untuk memutar lagi";
+  musicText.textContent ="Putar Musik";
+  musicStatus.innerHTML = "🎵 Musik MP3 dijeda. Klik tombol untuk memutar lagi";
+  console.log("🎵 Musik MP3 dihentikan");
 }
 
-musicToggleBtn.addEventListener("click", () => {
-  if (isMusicPlaying) stopMusic();
-  else startMusic();
-});
-
-const closePopupBtn = document.getElementById("closePopupBtn");
-closePopupBtn.addEventListener("click", () => {
-  const popup = document.getElementById("graduationPopup");
-  if (popup) {
-    popup.style.display = "none";
-    if (!autoPlayAttempted && !isMusicPlaying) {
-      autoPlayAttempted = true;
-      setTimeout(startMusic, 300);
+// Event listener tombol musik
+if (musicToggleBtn) {
+  musicToggleBtn.addEventListener("click", () => {
+    if (isMusicPlaying) {
+      stopMusic();
+    } else {
+      startMusic();
     }
-  }
-});
+  });
+}
 
-console.log(
-  "🎓 Happy Graduation - 27 anggota Irmanufa | Website by Kak Agung Ubaidillah",
-);
+// Popup ditutup -> mulai musik
+const closePopupBtn = document.getElementById("closePopupBtn");
+if (closePopupBtn) {
+  closePopupBtn.addEventListener("click", () => {
+    const popup = document.getElementById("graduationPopup");
+    if (popup) {
+      popup.style.display = "none";
+      if (!autoPlayAttempted && !isMusicPlaying) {
+        autoPlayAttempted = true;
+        setTimeout(() => {
+          startMusic();
+          console.log("🎬 Video YouTube berjalan (mute) + 🎵 Musik MP3 mulai");
+        }, 300);
+      }
+    }
+  });
+}
+
+// Fallback: jika user klik di mana saja setelah popup hilang
+document.body.addEventListener("click", function initMusicOnAnyClick() {
+  const popup = document.getElementById("graduationPopup");
+  const isPopupVisible = popup && popup.style.display === "flex";
+  
+  if (!autoPlayAttempted && !isMusicPlaying && !isPopupVisible) {
+    autoPlayAttempted = true;
+    setTimeout(startMusic, 100);
+  }
+}, { once: true });
+
+console.log("🎓 Happy Graduation - 27 anggota Irmanufa | Website by Kak Agung Ubaidillah");
 console.log("📱 Ucapan balasan akan dikirim ke WhatsApp: 0859-2640-6250");
 console.log("✨ Notifikasi sukses akan muncul dengan animasi keren!");
+console.log("🎬 Video YouTube: JALAN (HANYA VISUAL, DI-MUTE)");
+console.log("🎵 Musik MP3: JALAN SEBAGAI BACKSOUND (SUARA KELUAR)");
+console.log("✅ Video & MP3 berjalan BERSAMAAN!");
