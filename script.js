@@ -1,5 +1,5 @@
 // ========== SCRIPT LENGKAP - HAPPY GRADUATION IRMANUFA ==========
-// 27 anggota dengan foto di folder foto/A1.png s/d A27.png
+// 29 anggota dengan foto di folder foto/A1.png s/d A29.png
 // Fitur: Ucapan balasan untuk Kak Agung akan dikirim ke WhatsApp
 // Video YouTube: MUTE TOTAL (HANYA VISUAL)
 // MP3: LOOPING TERUS (BACKSOUND UTAMA)
@@ -7,7 +7,7 @@
 // NOMOR WHATSAPP KAK AGUNG (085926406250)
 const TARGET_WA = "6285926406250";
 
-// Daftar 27 Nama anggota Irmanufa
+// Daftar 29 Nama anggota Irmanufa (tambah Baats Jauhari & Rizky Arya Widani)
 const anggotaIrmanufa = [
   "Nalendra Maheswara",
   "Muhammad Fahri",
@@ -36,9 +36,11 @@ const anggotaIrmanufa = [
   "Caskia Dwi Pratiwi",
   "Laila",
   "Abdullah Fardani",
+  "Baats Jauhari",
+  "Rizky Arya Widani"
 ];
 
-console.log("Total Anggota:", anggotaIrmanufa.length);
+console.log("Total Anggota:", anggotaIrmanufa.length); // 29
 
 // ========== UCAPAN PRIBADI DARI KAK AGUNG ==========
 const personalMessages = [
@@ -69,6 +71,10 @@ const personalMessages = [
   "Halo Dong Caskia!, selamat lulus semoga hidupe selalu baik diberikan hal hal baik dan kembali rajin berkegiatan sehat sehat dan semoga di beri kemudahan dalam menjalani hidup ",
   "Halo laila Selamat Lulus semoga setelah ini bisa bergabung bersama kami ya, doa terbaik untuk kamu !",
   "Halo Nang abdul pria solo selamat lulusss jang,,,, semoga betah ng kana ya bisa dapet teman yg baik-baik, bisa berkembang lebih baik, dan semoga selalu ingat dengan pesan saya ketika masih disini.....",
+  // Ucapan untuk Baats Jauhari
+  "Halo Baats Jauhari, selamat lulus! Terimakasih sudah menjadi bagian dari keluarga Irmanufa. Semoga sukses selalu di jenjang berikutnya. Teruslah menjadi pribadi yang baik dan rendah hati!",
+  // Ucapan untuk Rizky Arya Widani
+  "Halo Nanang Bocil MBG, selamat lulus! Terimakasih atas kebersamaan dan kontribusinya selama ini. Semoga masa depan cerah selalu menantimu. Sukses selalu ya!"
 ];
 
 // ========== 1. GENERATE GALERI FOTO ==========
@@ -230,7 +236,6 @@ let autoPlayAttempted = false;
 // Pastikan video YouTube benar-benar MUTE
 const youtubeVideo = document.getElementById("youtubeVideo");
 if (youtubeVideo) {
-  // Cara memastikan video mute
   const iframeSrc = youtubeVideo.src;
   if (!iframeSrc.includes('mute=1')) {
     youtubeVideo.src = iframeSrc.replace('autoplay=1', 'autoplay=1&mute=1');
@@ -242,9 +247,8 @@ if (youtubeVideo) {
 function startMusic() {
   if (isMusicPlaying) return;
   
-  // Reset audio dulu
   bgMusic.currentTime = 0;
-  bgMusic.loop = true; // Looping otomatis
+  bgMusic.loop = true;
   
   bgMusic.play().then(() => {
     isMusicPlaying = true;
@@ -267,7 +271,6 @@ function stopMusic() {
   console.log("🎵 Musik MP3 dihentikan");
 }
 
-// Event listener tombol musik
 if (musicToggleBtn) {
   musicToggleBtn.addEventListener("click", () => {
     if (isMusicPlaying) {
@@ -278,7 +281,6 @@ if (musicToggleBtn) {
   });
 }
 
-// Popup ditutup -> mulai musik MP3
 const closePopupBtn = document.getElementById("closePopupBtn");
 if (closePopupBtn) {
   closePopupBtn.addEventListener("click", () => {
@@ -296,7 +298,6 @@ if (closePopupBtn) {
   });
 }
 
-// Fallback: jika user mengklik sesuatu selain popup
 document.body.addEventListener("click", function initMusicOnAnyClick() {
   const popup = document.getElementById("graduationPopup");
   const isPopupVisible = popup && popup.style.display === "flex";
@@ -310,7 +311,6 @@ document.body.addEventListener("click", function initMusicOnAnyClick() {
   }
 }, { once: true });
 
-// Pastikan MP3 looping terus meskipun ada error
 setInterval(() => {
   if (isMusicPlaying && bgMusic.paused) {
     console.log("⚠️ Musik terdeteksi berhenti, mencoba memutar ulang...");
@@ -318,9 +318,10 @@ setInterval(() => {
   }
 }, 5000);
 
-console.log("🎓 Happy Graduation - 27 anggota Irmanufa | Website by Kak Agung Ubaidillah");
+console.log("🎓 Happy Graduation - 29 anggota Irmanufa | Website by Kak Agung Ubaidillah");
 console.log("📱 Ucapan balasan akan dikirim ke WhatsApp: 0859-2640-6250");
 console.log("✨ Notifikasi sukses akan muncul dengan animasi keren!");
 console.log("🎬 Video YouTube: MUTE TOTAL - HANYA VISUAL");
 console.log("🎵 Musik MP3: LOOPING TERUS - BACKSOUND UTAMA");
 console.log("✅ Keduanya berjalan harmonis - MP3 yang bersuara, video hanya visual!");
+console.log("👥 Anggota baru: Baats Jauhari & Rizky Arya Widani (Total 29 anggota)");
